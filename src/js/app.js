@@ -1,17 +1,15 @@
-/**
- * Created by willem on 7/1/15.
- */
-let math = require('./lib/math');
 let React = require('react');
+let Login = require('./components/loginComponent');
 
-let MainView = React.createClass({
+class MainView extends React.Component {
     render() {
-        "use strict";
 
         return (
-            <div>MAINDIV</div>
+            <div>
+                <Login></Login>
+            </div>
         );
     }
-});
+}
 
 React.render(<MainView/>, document.querySelector('.content'));
