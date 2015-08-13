@@ -6,7 +6,8 @@ class LoginActions {
 
         AppDispatcher.dispatch({
             actionType: 'login',
-            username: username
+            username: username,
+            token: username
         });
     }
 }

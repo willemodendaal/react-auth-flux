@@ -8,7 +8,7 @@ class AuthService {
         console.log('Logging in with... ', username, ' ', password);
 
         //All logins succeed for now.
-        //Call external service here. Consider using Node Passport or Auth0.
+        //Call Facebook auth here. Consider using Node Passport or Auth0.
 
         //Success callback triggers the action...
         LoginActions.loginUser(username);
