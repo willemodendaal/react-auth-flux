@@ -20,7 +20,7 @@ class LoginStore extends BaseStore {
     }
 
     //Getters to give access to properties.
-    get user() {
+    get username() {
         return this._user;
     }
 
