@@ -2,11 +2,12 @@
 //  - Hold data it gets from actions.
 //  - Raises events (sub class of EventEmitter)
 import AppDispatcher from '../dispatchers/appDispatcher';
+import BaseStore from './baseStore';
 
 class LoginStore extends BaseStore {
     constructor() {
         super();
-        this.dispatchToken = AppDispatcher.register(this._registerToActions.bind(this));
+        //this.dispatchToken = AppDispatcher.register(this._registerToActions.bind(this));
         this._user = null;
         this._token = null; //To implement in future.
     }

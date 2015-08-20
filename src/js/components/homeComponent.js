@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthenticatedComponent from 'authenticatedComponent';
+import AuthenticatedComponent from './authenticatedComponent';
 
 //Wrap 'Home' in 'AuthenticatedComponent'. It will only render if
 //  user is authenticated. Otherwise user will be redirected to login.

@@ -1,6 +1,7 @@
 //Wraps other components. User must be authenticated, otherwise this
 //  component will redirect the user to the logon page.
 //Component uses data from login store.
+import React from 'react';
 import LoginStore from '../stores/loginStore';
 
 export default (ComposedComponent) => {
@@ -15,6 +16,7 @@ export default (ComposedComponent) => {
         }
 
         constructor() {
+            super();
             this.state = this._getLoginState();
         }
 

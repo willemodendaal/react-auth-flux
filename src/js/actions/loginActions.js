@@ -1,4 +1,4 @@
-import AppDispatcher from '../dispatchers/AppDispatcher';
+import AppDispatcher from '../dispatchers/appDispatcher';
 import RouterContainer from '../services/routerContainer';
 
 class LoginActions {

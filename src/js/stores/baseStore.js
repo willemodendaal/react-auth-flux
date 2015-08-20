@@ -1,10 +1,11 @@
 //Store base class that contains utility methods for all stores
 //  to use.
 
-import { EventEmitter } from 'events';
+import EventEmitter from 'events';
 import AppDispatcher from '../dispatchers/AppDispatcher';
 
-class BaseStore extends  EventEmitter {
+class BaseStore extends EventEmitter {
+
     constructor() {
         super();
     }
@@ -29,3 +30,5 @@ class BaseStore extends  EventEmitter {
         this.removeListener('CHANGE', cb);
     }
 }
+
+export default BaseStore;

@@ -1,12 +1,20 @@
 import React from 'react'
-import Router, {Route} from 'react-router';
-import RouterContainer from './components/routerContainer';
+import Router, {Route, RouterHandler } from 'react-router';
+import RouterContainer from './services/routerContainer';
 import Login from './components/loginComponent';
 import Home from './components/homeComponent';
 
+class App extends React.Component {
+    render() {
+        return (<div>
+            <RouteHandler/>
+        </div>);
+    }
+}
+
 //Configure routes
 var routes = (
-    <Route handler={AuthenticatedApp}>
+    <Route handler={App}>
         <Route name="login" handler={Login}/>
         <Route name="home" path="/" handler={Home}/>
     </Route>
