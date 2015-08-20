@@ -36,7 +36,7 @@ class Login extends React.Component {
 }
 
 //Use reactMixin to enable two-way databinding between username and password fields and the component.
-// Because ES6 classes don't have react mixins?
+// Needed because ES6 classes don't have react mixins (not 100% sure, but that's what I have read).
 ReactMixin(Login.prototype, React.addons.LinkedStateMixin);
 
 export default Login;

@@ -6,7 +6,8 @@
   "dependencies": {
     "flux": "^2.0.3",
     "react": "^0.13.3",
-    "react-mixin": "^1.7.0"
+    "react-mixin": "^1.7.0",
+    "react-router": "^0.13.3"
   },
   "browserify": {
     "transform": [
