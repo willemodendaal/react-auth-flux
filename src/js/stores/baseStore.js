@@ -18,7 +18,7 @@ class BaseStore extends  EventEmitter {
     }
 
     emitChange() {
-        this.emit('CHANGE');
+        this.emit('CHANGE'); //All components listen to generic 'Change' event. No need to be more specific than that.
     }
 
     addChangeListener(cb) {

@@ -7,7 +7,7 @@ export default (ComposedComponent) => {
     return class AuthenticatedComponent extends React.Component {
 
         static willTransitionTo(transition) {
-            //Called before transitioning to this component.
+            //React-Router method that is called before transitioning to this component.
             //Send user to login page if not logged in.
             if (!LoginStore.isLoggedIn()) {
                 transition.redirect('/login');
