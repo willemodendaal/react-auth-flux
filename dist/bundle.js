@@ -25939,7 +25939,12 @@ var App = (function (_React$Component) {
             return _react2['default'].createElement(
                 'div',
                 null,
-                _react2['default'].createElement(RouteHandler, null)
+                _react2['default'].createElement(
+                    'span',
+                    null,
+                    'Routes rendered here:'
+                ),
+                _react2['default'].createElement(_reactRouter.RouteHandler, null)
             );
         }
     }]);
@@ -25951,14 +25956,14 @@ var routes = _react2['default'].createElement(
     _reactRouter.Route,
     { handler: App },
     _react2['default'].createElement(_reactRouter.Route, { name: 'login', handler: _componentsLoginComponent2['default'] }),
-    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: '/', handler: _componentsHomeComponent2['default'] })
+    _react2['default'].createElement(_reactRouter.Route, { name: 'home', handler: _componentsHomeComponent2['default'] })
 );
 
 var router = _reactRouter2['default'].create({ routes: routes });
 _servicesRouterContainer2['default'].set(router);
 
-router.run(function (handler) {
-    _react2['default'].render(_react2['default'].createElement('handler', null), document.getElementById('content'));
+router.run(function (Handler) {
+    _react2['default'].render(_react2['default'].createElement(Handler, null), document.querySelector('.content'));
 });
 
 },{"./components/homeComponent":224,"./components/loginComponent":225,"./services/routerContainer":229,"react":218,"react-router":31}],223:[function(require,module,exports){
