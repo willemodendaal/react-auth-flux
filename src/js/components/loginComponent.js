@@ -25,9 +25,10 @@ class Login extends React.Component {
     render() {
         return (
             <form role="form">
+                <h3>Please login:</h3>
                 <div className="form-group">
-                    <input type="text" valueLink={this.linkState('user')} placeholder="Username"/>
-                    <input type="password" valueLink={this.linkState('password')} placeholder="Password"/>
+                    <input type="text" valueLink={this.linkState('user')} placeholder="Username"/><br/>
+                    <input type="password" valueLink={this.linkState('password')} placeholder="Password"/><br/>
                 </div>
                 <button type="submit" onClick={this.login.bind(this)}>Submit</button>
             </form>

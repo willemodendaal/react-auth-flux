@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Router, {Route, RouteHandler } from 'react-router';
 import RouterContainer from './services/routerContainer';
 import Login from './components/loginComponent';

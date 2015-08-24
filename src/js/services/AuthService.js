@@ -4,6 +4,10 @@ import LoginActions from '../actions/loginActions';
 
 class AuthService {
 
+    constructor() {
+
+    }
+
     login(username, password) {
         console.log('Logging in with... un: ${username} pwd: ${password}');
 
@@ -18,6 +22,8 @@ class AuthService {
 
         return promise;
     }
+
+
 }
 
 export default new AuthService();

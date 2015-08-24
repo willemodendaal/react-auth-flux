@@ -26220,10 +26220,17 @@ var Login = (function (_React$Component) {
                 'form',
                 { role: 'form' },
                 _reactAddons2['default'].createElement(
+                    'h3',
+                    null,
+                    'Please login:'
+                ),
+                _reactAddons2['default'].createElement(
                     'div',
                     { className: 'form-group' },
                     _reactAddons2['default'].createElement('input', { type: 'text', valueLink: this.linkState('user'), placeholder: 'Username' }),
-                    _reactAddons2['default'].createElement('input', { type: 'password', valueLink: this.linkState('password'), placeholder: 'Password' })
+                    _reactAddons2['default'].createElement('br', null),
+                    _reactAddons2['default'].createElement('input', { type: 'password', valueLink: this.linkState('password'), placeholder: 'Password' }),
+                    _reactAddons2['default'].createElement('br', null)
                 ),
                 _reactAddons2['default'].createElement(
                     'button',
