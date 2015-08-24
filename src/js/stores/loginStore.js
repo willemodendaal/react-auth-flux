@@ -7,7 +7,7 @@ import BaseStore from './baseStore';
 class LoginStore extends BaseStore {
     constructor() {
         super();
-        //this.dispatchToken = AppDispatcher.register(this._registerToActions.bind(this));
+        this._dispatchToken = AppDispatcher.register(this._registerToActions.bind(this));
         this._user = null;
         this._token = null; //To implement in future.
     }

@@ -5,13 +5,18 @@ import LoginActions from '../actions/loginActions';
 class AuthService {
 
     login(username, password) {
-        console.log('Logging in with... ', username, ' ', password);
+        console.log('Logging in with... un: ${username} pwd: ${password}');
 
-        //All logins succeed for now.
-        //Call Facebook auth here. Consider using Node Passport or Auth0.
+        let promise = new Promise(function(resolve, reject) {
+            //All logins succeed for now.
+            //Call Facebook auth here. Consider using Node Passport or Auth0.
 
-        //Success callback triggers the action...
-        LoginActions.loginUser(username);
+            //Success callback triggers the action...
+            LoginActions.loginUser(username);
+            resolve();
+        });
+
+        return promise;
     }
 }
 

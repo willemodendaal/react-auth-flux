@@ -7,17 +7,36 @@ import Home from './components/homeComponent';
 class App extends React.Component {
     render() {
         return (<div>
-            <span>Routes rendered here:</span>
+            [
             <RouteHandler/>
+            ]
         </div>);
     }
 }
+
+
+class B1 extends React.Component {
+    render() {
+        return (<div>
+            b1
+        </div>);
+    }
+}
+
+class B2 extends React.Component {
+    render() {
+        return (<div>
+            b2
+        </div>);
+    }
+}
+
 
 //Configure routes
 var routes = (
     <Route handler={App}>
         <Route name="login" handler={Login}/>
-        <Route name="home" handler={Home}/>
+        <Route name="home" path="/" handler={Home}/>
     </Route>
 );
 

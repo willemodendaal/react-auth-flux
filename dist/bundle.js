@@ -25931,20 +25931,15 @@ var App = (function (_React$Component) {
         _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
     }
 
-    //Configure routes
-
     _createClass(App, [{
         key: 'render',
         value: function render() {
             return _react2['default'].createElement(
                 'div',
                 null,
-                _react2['default'].createElement(
-                    'span',
-                    null,
-                    'Routes rendered here:'
-                ),
-                _react2['default'].createElement(_reactRouter.RouteHandler, null)
+                '[',
+                _react2['default'].createElement(_reactRouter.RouteHandler, null),
+                ']'
             );
         }
     }]);
@@ -25952,11 +25947,59 @@ var App = (function (_React$Component) {
     return App;
 })(_react2['default'].Component);
 
+var B1 = (function (_React$Component2) {
+    _inherits(B1, _React$Component2);
+
+    function B1() {
+        _classCallCheck(this, B1);
+
+        _get(Object.getPrototypeOf(B1.prototype), 'constructor', this).apply(this, arguments);
+    }
+
+    _createClass(B1, [{
+        key: 'render',
+        value: function render() {
+            return _react2['default'].createElement(
+                'div',
+                null,
+                'b1'
+            );
+        }
+    }]);
+
+    return B1;
+})(_react2['default'].Component);
+
+var B2 = (function (_React$Component3) {
+    _inherits(B2, _React$Component3);
+
+    function B2() {
+        _classCallCheck(this, B2);
+
+        _get(Object.getPrototypeOf(B2.prototype), 'constructor', this).apply(this, arguments);
+    }
+
+    //Configure routes
+
+    _createClass(B2, [{
+        key: 'render',
+        value: function render() {
+            return _react2['default'].createElement(
+                'div',
+                null,
+                'b2'
+            );
+        }
+    }]);
+
+    return B2;
+})(_react2['default'].Component);
+
 var routes = _react2['default'].createElement(
     _reactRouter.Route,
     { handler: App },
     _react2['default'].createElement(_reactRouter.Route, { name: 'login', handler: _componentsLoginComponent2['default'] }),
-    _react2['default'].createElement(_reactRouter.Route, { name: 'home', handler: _componentsHomeComponent2['default'] })
+    _react2['default'].createElement(_reactRouter.Route, { name: 'home', path: '/', handler: _componentsHomeComponent2['default'] })
 );
 
 var router = _reactRouter2['default'].create({ routes: routes });
@@ -26257,11 +26300,15 @@ var AuthService = (function () {
         value: function login(username, password) {
             console.log('Logging in with... ', username, ' ', password);
 
-            //All logins succeed for now.
-            //Call Facebook auth here. Consider using Node Passport or Auth0.
+            var promise = new Promise(function (resolve, reject) {
+                //All logins succeed for now.
+                //Call Facebook auth here. Consider using Node Passport or Auth0.
 
-            //Success callback triggers the action...
-            _actionsLoginActions2['default'].loginUser(username);
+                //Success callback triggers the action...
+                _actionsLoginActions2['default'].loginUser(username);
+            });
+
+            return promise;
         }
     }]);
 
@@ -26396,7 +26443,7 @@ var LoginStore = (function (_BaseStore) {
         _classCallCheck(this, LoginStore);
 
         _get(Object.getPrototypeOf(LoginStore.prototype), 'constructor', this).call(this);
-        //this.dispatchToken = AppDispatcher.register(this._registerToActions.bind(this));
+        this._dispatchToken = _dispatchersAppDispatcher2['default'].register(this._registerToActions.bind(this));
         this._user = null;
         this._token = null; //To implement in future.
     }
