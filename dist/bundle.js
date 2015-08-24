@@ -25868,17 +25868,32 @@ var LoginActions = (function () {
     }
 
     _createClass(LoginActions, [{
+        key: 'logoff',
+        value: function logoff() {
+            localStorage.removeItem('token');
+
+            //Change URL to login.
+            _servicesRouterContainer2['default'].get().transitionTo('/login');
+
+            _dispatchersAppDispatcher2['default'].dispatch({
+                actionType: 'logoff'
+            });
+        }
+    }, {
         key: 'loginUser',
-        value: function loginUser(username) {
-            localStorage.setItem('token', username); //Pass real token in future.
+        value: function loginUser(token) {
+            localStorage.setItem('token', token); //Pass real token in future.
 
             //Change URL to home.
             _servicesRouterContainer2['default'].get().transitionTo('/');
 
+            //Store the fact that user is logged in.
+            localStorage.setItem('token', token);
+
             _dispatchersAppDispatcher2['default'].dispatch({
                 actionType: 'login',
-                username: username,
-                token: username
+                username: token,
+                token: token
             });
         }
     }]);
@@ -25922,6 +25937,10 @@ var _componentsHomeComponent = require('./components/homeComponent');
 
 var _componentsHomeComponent2 = _interopRequireDefault(_componentsHomeComponent);
 
+var _actionsLoginActions = require('./actions/loginActions');
+
+var _actionsLoginActions2 = _interopRequireDefault(_actionsLoginActions);
+
 var App = (function (_React$Component) {
     _inherits(App, _React$Component);
 
@@ -25931,68 +25950,20 @@ var App = (function (_React$Component) {
         _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
     }
 
+    //Configure routes
+
     _createClass(App, [{
         key: 'render',
         value: function render() {
             return _react2['default'].createElement(
                 'div',
                 null,
-                '[',
-                _react2['default'].createElement(_reactRouter.RouteHandler, null),
-                ']'
+                _react2['default'].createElement(_reactRouter.RouteHandler, null)
             );
         }
     }]);
 
     return App;
-})(_react2['default'].Component);
-
-var B1 = (function (_React$Component2) {
-    _inherits(B1, _React$Component2);
-
-    function B1() {
-        _classCallCheck(this, B1);
-
-        _get(Object.getPrototypeOf(B1.prototype), 'constructor', this).apply(this, arguments);
-    }
-
-    _createClass(B1, [{
-        key: 'render',
-        value: function render() {
-            return _react2['default'].createElement(
-                'div',
-                null,
-                'b1'
-            );
-        }
-    }]);
-
-    return B1;
-})(_react2['default'].Component);
-
-var B2 = (function (_React$Component3) {
-    _inherits(B2, _React$Component3);
-
-    function B2() {
-        _classCallCheck(this, B2);
-
-        _get(Object.getPrototypeOf(B2.prototype), 'constructor', this).apply(this, arguments);
-    }
-
-    //Configure routes
-
-    _createClass(B2, [{
-        key: 'render',
-        value: function render() {
-            return _react2['default'].createElement(
-                'div',
-                null,
-                'b2'
-            );
-        }
-    }]);
-
-    return B2;
 })(_react2['default'].Component);
 
 var routes = _react2['default'].createElement(
@@ -26009,7 +25980,13 @@ router.run(function (Handler) {
     _react2['default'].render(_react2['default'].createElement(Handler, null), document.querySelector('.content'));
 });
 
-},{"./components/homeComponent":224,"./components/loginComponent":225,"./services/routerContainer":229,"react":218,"react-router":31}],223:[function(require,module,exports){
+//Login user if logged in previously.
+var token = localStorage.getItem('token');
+if (token) {
+    _actionsLoginActions2['default'].loginUser(token);
+}
+
+},{"./actions/loginActions":221,"./components/homeComponent":224,"./components/loginComponent":225,"./services/routerContainer":229,"react":218,"react-router":31}],223:[function(require,module,exports){
 //Wraps other components. User must be authenticated, otherwise this
 //  component will redirect the user to the logon page.
 //Component uses data from login store.
@@ -26088,7 +26065,7 @@ exports['default'] = function (ComposedComponent) {
         }, {
             key: 'componentWillUnmount',
             value: function componentWillUnmount() {
-                _storesLoginStore2['default'].removeChangeListener(this._onChange().bind(this));
+                _storesLoginStore2['default'].removeChangeListener(this._onChange.bind(this));
             }
 
             //Return the thing we're wrapping. Wont get this far if
@@ -26097,7 +26074,7 @@ exports['default'] = function (ComposedComponent) {
             key: 'render',
             value: function render() {
                 return _react2['default'].createElement(ComposedComponent, _extends({}, this.props, {
-                    user: this.state.username,
+                    username: this.state.username,
                     token: this.state.token,
                     userLoggedIn: this.state.userLoggedIn
                 }));
@@ -26135,6 +26112,10 @@ var _authenticatedComponent = require('./authenticatedComponent');
 
 var _authenticatedComponent2 = _interopRequireDefault(_authenticatedComponent);
 
+var _actionsLoginActions = require('../actions/loginActions');
+
+var _actionsLoginActions2 = _interopRequireDefault(_actionsLoginActions);
+
 //Wrap 'Home' in 'AuthenticatedComponent'. It will only render if
 //  user is authenticated. Otherwise user will be redirected to login.
 exports['default'] = (0, _authenticatedComponent2['default'])((function (_React$Component) {
@@ -26147,13 +26128,27 @@ exports['default'] = (0, _authenticatedComponent2['default'])((function (_React$
     }
 
     _createClass(Home, [{
+        key: 'logoff',
+        value: function logoff() {
+            _actionsLoginActions2['default'].logoff();
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2['default'].createElement(
-                'h1',
+                'div',
                 null,
-                'Home page. Welcome: ',
-                this.props.username
+                _react2['default'].createElement(
+                    'h1',
+                    null,
+                    'Home page. Welcome: ',
+                    this.props.username
+                ),
+                _react2['default'].createElement(
+                    'button',
+                    { onClick: this.logoff },
+                    'Logoff'
+                )
             );
         }
     }]);
@@ -26162,7 +26157,7 @@ exports['default'] = (0, _authenticatedComponent2['default'])((function (_React$
 })(_react2['default'].Component));
 module.exports = exports['default'];
 
-},{"./authenticatedComponent":223,"react":218}],225:[function(require,module,exports){
+},{"../actions/loginActions":221,"./authenticatedComponent":223,"react":218}],225:[function(require,module,exports){
 //Adapted from https://auth0.com/blog/2015/04/09/adding-authentication-to-your-react-flux-app/
 'use strict';
 

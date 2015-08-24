@@ -40,7 +40,7 @@ export default (ComposedComponent) => {
 
         //Clean up after ourselves.
         componentWillUnmount() {
-            LoginStore.removeChangeListener(this._onChange().bind(this));
+            LoginStore.removeChangeListener(this._onChange.bind(this));
         }
 
         //Return the thing we're wrapping. Wont get this far if
@@ -49,7 +49,7 @@ export default (ComposedComponent) => {
             return (
                 <ComposedComponent
                     {...this.props}
-                    user={this.state.username}
+                    username={this.state.username}
                     token={this.state.token}
                     userLoggedIn={this.state.userLoggedIn}
                     />
