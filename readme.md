@@ -2,6 +2,8 @@
 
 A React implementation with Facebook authentication using the Flux architecture.
 
+WIP Note: Facebook auth implementation still in progress.
+
 Other features:
 - Watch the filesystem for changes while developing (run `npm run watch`).
     - Shows how to run more than one task NPM concurrently.
